@@ -16,7 +16,10 @@ function getRandomColour() {
   return '#'+ getRandomHex() + getRandomHex() + getRandomHex();
 }
 
-var serverAddress = 'http://localhost:9001/';
+var serverAddress = (
+  'https://myuow.me/sydtrans/api/'
+//  'http://localhost:9001/'
+);
 
 var Sidebar = React.createClass({
   clicked: function (name) {
@@ -53,10 +56,14 @@ var SydTransMap = React.createClass({
   drawPolyline: function (name, colour) {
     this.clearMap();
     var bounds;
+    var drawnLines = {};
     var f = (line, name) => {
+      if (drawnLines[line]) return;
+      drawnLines[line] = true;
       var line = L.Polyline.fromEncoded(line, {
         color: getRandomColour(),
         opacity: 1,
+        weight: 3,
       }).bindPopup(name);
 
       if (!bounds) bounds = line.getBounds();
@@ -67,6 +74,7 @@ var SydTransMap = React.createClass({
 
     if (!name || name === this.state.routeDrawn) {
       _.each(this.state.routes, f);
+      console.log('drew '+ Object.keys(drawnLines).length +' of '+ Object.keys(this.state.routes).length +' routes');
     } else {
       f(this.state.routes[name], name);
     }

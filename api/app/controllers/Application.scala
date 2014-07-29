@@ -46,7 +46,9 @@ object Application extends Controller with MongoController {
             Json.obj(
               "_id" -> shape.id,
               "id" -> shape.id,
+              "id_bits" -> shape.id.split('-').flatMap{a => 1 to a.length map{a.substring(0, _)}}.toSet[String],
               "encoded" -> shape.enc,
+              "encoded_length" -> shape.enc.length,
               "path" -> Json.toJson(shape.path)
             )
           )

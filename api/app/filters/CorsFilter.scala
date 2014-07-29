@@ -14,15 +14,17 @@ object CorsFilter extends Filter {
       Future { Default.Ok.withHeaders(
         "Access-Control-Allow-Origin" -> request.headers.get("Origin").getOrElse("*"),
         "Access-Control-Allow-Methods" -> request.headers.get("Access-Control-Request-Method").getOrElse("*"),
-        "Access-Control-Allow-Headers" -> request.headers.get("Access-Control-Request-Headers").getOrElse("")
-        //"Access-Control-Allow-Credentials" -> "true" 
+        "Access-Control-Allow-Headers" -> request.headers.get("Access-Control-Request-Headers").getOrElse(""),
+        "Access-Control-Expose-Headers" -> "content-length, content-encoding, content-range"
+        //"Access-Control-Allow-Credentials" -> "true"
       )}
     } else {
       next(request).map {
         _.withHeaders(
           "Access-Control-Allow-Origin" -> request.headers.get("Origin").getOrElse("*"),
           "Access-Control-Allow-Methods" -> request.headers.get("Access-Control-Request-Method").getOrElse("*"),
-          "Access-Control-Allow-Headers" -> request.headers.get("Access-Control-Request-Headers").getOrElse("")
+          "Access-Control-Allow-Headers" -> request.headers.get("Access-Control-Request-Headers").getOrElse(""),
+          "Access-Control-Expose-Headers" -> "content-length, content-encoding, content-range"
           //"Access-Control-Allow-Credentials" -> "true"
         )
       }
