@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 "use strict";
 
-if (typeof window !== 'undefined') {
-  var React = React || require('react');
-  var L = L || require('leaflet');
-}
+// Browserify imports
+var React = (typeof React !== 'undefined' && React) || require('react');
+var L = (typeof L !== 'undefined' && L) || (typeof window !== 'undefined' && require('leaflet'));
 
 var utils = (function () {
 
@@ -37,17 +36,13 @@ var Leaflet = React.createClass({
     logging: true,
   },
   getDefaultProps: function () {
-    if (!L) {
-      return {};
-    } else {
-      return {
-        // Sydney AU
-        center: L.latLng(-34.41781, 150.87678),
-        zoom: 14,
-        tileLayers: [
-        ],
-      };
-    }
+    return {
+      // Sydney AU
+      center: [-34.41781, 150.87678],
+      zoom: 14,
+      tileLayers: [
+      ],
+    };
   },
 
   componentWillReceiveProps: function (next) {
@@ -94,6 +89,7 @@ var Leaflet = React.createClass({
       })
     ;
 
+    // use osm layer if no layers are given
     (this.props.tileLayers.length ? this.props.tileLayers : [
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
