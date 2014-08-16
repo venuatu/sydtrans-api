@@ -20,7 +20,7 @@ gulp.task('styles', function () {
 gulp.task('scripts', function () {
     return gulp.src('app/scripts/**/*.js')
         .pipe($.react())
-        .pipe($.traceur({experimental: true}))
+        .pipe($.traceur({experimental: true, sourceMap: true}))
         .pipe(gulp.dest('.tmp/scripts/'))
         .pipe($.size());
 });
@@ -44,7 +44,7 @@ gulp.task('html', ['styles', 'scripts'], function () {
 });
 
 gulp.task('images', function () {
-    return gulp.src('app/images/**/*')
+    return gulp.src(['app/{,**/}images/*.{png,jpg}'])
         .pipe($.cache($.imagemin({
             optimizationLevel: 3,
             progressive: true,

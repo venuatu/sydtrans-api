@@ -9,7 +9,10 @@
     "leaflet": "~0.7.3",
     "react": "~0.11.0",
     "httpinvoke": "~1.2.1",
-    "Leaflet.encoded": "~0.0.4"
+    "Leaflet.encoded": "~0.0.4",
+    "leaflet-plugins": "~1.1.2",
+    "leaflet.markercluster": "~0.4.0",
+    "superagent": "~0.18.2"
   },
   "devDependencies": {}
 }

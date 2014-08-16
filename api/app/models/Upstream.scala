@@ -64,8 +64,9 @@ object Upstream {
     val reader = getReader(filename, "shape")
     var id = ""
     var path = ArrayBuffer[ShapeBit]()
-    Enumerator.fromCallback1[(String, Seq[ShapeBit])] {bool => Future {
-      var result: Option[(String, Seq[ShapeBit])] = None
+
+    new IterFunc[(String, Vector[ShapeBit])]({() =>
+      var result: Option[(String, Vector[ShapeBit])] = None
       do {
         val item = reader.next()
         if (id != item("shape_id")) {
@@ -77,7 +78,7 @@ object Upstream {
         path += ShapeBit(item("pt_lat").toDouble, item("pt_lon").toDouble, item("dist_traveled").toDouble)
       } while (reader.hasNext && !result.isDefined)
       result
-    }}
+    })
   }
 
   def fromCsv[T: Reads](filename: String, entity: String): Seq[T] = {

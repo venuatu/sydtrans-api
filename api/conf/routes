@@ -5,8 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /csv                        controllers.Application.fromcsv
-GET     /shapes/*filter             controllers.Shapes.all(filter)
-GET     /shapes/                    controllers.Shapes.all(filter ?= "")
+GET     /shapes                     controllers.Shapes.all(filter ?= "", bounds)
+GET     /stops                      controllers.Stops.bounded(bounds ?= "")
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

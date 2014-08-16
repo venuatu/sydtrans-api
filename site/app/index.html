@@ -5,8 +5,11 @@
         <title>site</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
         <!-- build:css styles/main.css -->
         <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+        <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.css">
+        <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
     </head>
@@ -15,9 +18,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="container">
-            <div id="themap"></div>
-            <aside id="legend"></aside>
+        <div id="container">
         </div>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
@@ -34,12 +35,16 @@
         <script src="bower_components/lodash/dist/lodash.js"></script>
         <script src="bower_components/react/react.js"></script>
         <script src="bower_components/traceur-runtime/traceur-runtime.js"></script>
-        <script src="bower_components/httpinvoke/httpinvoke-browser.js"></script>
+        <script src="bower_components/superagent/superagent.js"></script>
+        <!-- endbuild -->
+        <!-- build:js scripts/leaflet.js -->
         <script src="bower_components/leaflet/dist/leaflet.js"></script>
         <script src="bower_components/Leaflet.encoded/Polyline.encoded.js"></script>
+        <script src="bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
         <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
+        <script src="scripts/react-leaflet.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

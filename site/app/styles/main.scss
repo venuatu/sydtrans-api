@@ -4,21 +4,20 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
-#themap {
+.leaflet-container {
     position: fixed;
     top: 0;
-    right: 20%;
+    right: 15%;
     bottom: 0;
     left: 0;
 }
 
 #legend {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    width: 20%;
-    overflow: auto;
+    width: 15%;
 
     .selected-route {
         background-color: #f0f0f0;

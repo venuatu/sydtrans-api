@@ -1,5 +1,5 @@
 import models.JsonFormat
-import models.Polyline.Coord
+import models.Types.Coord
 import org.specs2.mutable._
 import org.specs2.runner._
 import org.junit.runner._

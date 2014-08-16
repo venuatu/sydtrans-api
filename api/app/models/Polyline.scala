@@ -1,18 +1,10 @@
 package models
 
+import models.Types.Coord
+
 import collection.mutable.ArrayBuffer
 
 object Polyline {
-  case class Coord(lat: Double, lng: Double) {
-    override def equals(other: Any): Boolean = other match {
-      case other: Coord => coordeq(lat, other.lat) && coordeq(lng, other.lng)
-      case _ => false
-    }
-    def coordeq(l: Double, r: Double): Boolean = {
-      Math.abs(l - r) < 0.000001
-    }
-  }
-
   def decode(encoded: String): Seq[Coord] = {
     val coords = getChunks(encoded).map{getCoord}
 
